@@ -9,5 +9,6 @@ Fill free to understand them and adapt them. Copy/Paste them is not a good idea 
 | --------- | -------- | --------------- | ---------- |
 | TP 1      | 1        | easy_labs.lisp  | 17 to 54   |
 |           | 2        | easy_labs.lisp  | 55 to 123  |
-|           | 3        | easy_labs.list  | 124 to 179 |
-| TP 2      | 1        | NOT done YET    | x          |
+|           | 3        | easy_labs.lisp  | 124 to 179 |
+| TP 2      | 1        | easy_labs.lisp  | 180 to 214 |
+|           | 2        | easy_labs.lisp  | |

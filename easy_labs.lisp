@@ -29,7 +29,7 @@
 (defun red_in (L)
   (cond
     ((null L) nil))
-    ((eq (car L) ("red")))
+    ((eq (car L) "red"))
     ((red_in (cdr L)))
   )
 )
@@ -178,4 +178,48 @@
 )
 ; ------------------------------------------------------------------------------
 ; ---- TP 2 --------------------------------------------------------------------
+(setq l '(1 2 ((3 (4) 5))))
 ; --------- 1 ------------------------------------------------------------------
+(defun last_of_list (l)
+  (cond
+    ((null l) l)
+    ((null (cdr l)) (first l))
+    (t (last_of_list (cdr l)))
+  )
+)
+
+(last_of_list l)
+
+(defun last_elements_first_tree_in_list (l)
+  (cond
+    ((null l) l)
+    ((listp (first l)) (last_elements_first_tree_in_list (first l))) 
+    ((null (cdr l)) (first l))
+    (t (last_elements_first_tree_in_list (cdr l)))
+  )
+)
+
+(last_elements_first_tree_in_list l)
+
+(defun last_elements_first_list (l)
+  (cond
+    ((null l) l)
+    ((listp (first l)) (last_of_list (last_of_list (first l)))) 
+    ((null (cdr l)) (first l))
+    (t (last_elements_first_list (cdr l)))
+  )
+)
+
+(last_elements_first_list l)
+; ------------------------------------------------------------------------------
+; --------- 2 ------------------------------------------------------------------
+null
+(setq l '(a b 1 2))
+(setq l2 '())
+(null l)
+(null l2)
+;
+;eq
+(eq 1 2)
+(eq "a" "b")
+;list
