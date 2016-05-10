@@ -12,3 +12,6 @@ Fill free to understand them and adapt them. Copy/Paste them is not a good idea 
 |           | 3        | easy_labs.lisp  | 124 to 179 |
 | TP 2      | 1        | easy_labs.lisp  | 180 to 214 |
 |           | 2        | easy_labs.lisp  | 215 to 253 |
+|           | 3        | easy_labs.lisp  | 254 to 326 |
+| TP 3      | x        | easy_labs.lisp  | 327 to 528 |
+| TP 4      | 1        | easy_labs.lisp  | INP        |

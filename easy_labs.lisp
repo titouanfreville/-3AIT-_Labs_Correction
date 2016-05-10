@@ -193,7 +193,7 @@
 (defun last_elements_first_tree_in_list (l)
   (cond
     ((null l) l)
-    ((listp (first l)) (last_elements_first_tree_in_list (first l))) 
+    ((listp (first l)) (last_elements_first_tree_in_list (first l)))
     ((null (cdr l)) (first l))
     (t (last_elements_first_tree_in_list (cdr l)))
   )
@@ -204,7 +204,7 @@
 (defun last_elements_first_list (l)
   (cond
     ((null l) l)
-    ((listp (first l)) (last_of_list (last_of_list (first l)))) 
+    ((listp (first l)) (last_of_list (last_of_list (first l))))
     ((null (cdr l)) (first l))
     (t (last_elements_first_list (cdr l)))
   )
@@ -230,9 +230,9 @@
 ;
 ; define error list_to_small to use when list is too short for properties ~~
 (define-condition list_to_small (error) nil)
- 
+
 ;check_third_element
-; @PARAM list 
+; @PARAM list
 ; @RETURN nill 3rd element isn't a list; true else
 ; @THROW list_to_small if list don't have 3 elements
 (defun check_third_element (l)
@@ -241,7 +241,7 @@
     ((atom l) (error 'list_to_small))
     ((null (cdr (cdr l))) (error 'list_to_small))
     (T (listp (third l)))
-  )  
+  )
 )
 (setq l6 '(a c))
 
@@ -289,7 +289,7 @@
   )
 )
 ;Afficher
-; This function don't have parameter and don't return anything :p it just 
+; This function don't have parameter and don't return anything :p it just
 ; ask you to enter an INTEGER and print it's square && cube
 (defun Afficher ()
   (terpri)
@@ -306,9 +306,9 @@
 (defun multi(n)
   (defun res_multi(arg)
     (* arg n)
-  ) 
+  )
 )
- 
+
 (trace multi)
 (funcall (multi 3) 2)
 ;
@@ -324,6 +324,205 @@
 ;test
 (f 'fct)
 ; ------------------------------------------------------------------------------
-; ---- TP 3 --------------------------------------------------------------------
-; inlude
-; 
+---- TP 3 --------------------------------------------------------------------
+inlude
+Au sens des sélecteurs
+Soit include la fonction -> Boolean
+F(L1,L2): selon L1
+   Vide (L1) : true
+   non Vide(L2): i = Premier(L1);
+                DEBUT appartient
+                Soit appartient la fonction -> >Boolean
+                F(i,L2)
+                  selon L2
+                      Vide (L2) : false
+                      non Vide(L2) : Premier(L2) == i ou alors appartient (i, Fin L2)
+               FIN APPARTIENT
+               et include (FIN L1, L2)$
+@defun
+@PARAMETERS element, list
+@RETURN true si element in list, false sinon
+(defun in (a l)
+  (cond
+    ((null l) nil)
+    ((eq (first l) a))
+    (t (in a (cdr l)))
+  )
+)
+;@inclus
+;@PARAMETERS list1, list2
+;@RETURN true if list1 include in l2, false else
+(defun inclus (l1 l2)
+  (cond
+    ((null l1))
+    ((eq (in (first l1) l2) nil) nil)
+    (t (inclus (cdr l1) l2))
+  )
+)
+;test
+(setq l1 '(a b c d) l2 '(c a b f g e d) l3 '(c b d f g e i) l4 '(d a b c) ld '(a a b c d b e c f g g g))
+
+(inclus l1 l2)
+(inclus l1 l3)
+(inclus l4 l2)
+(inclus l4 l3)
+;
+; compare
+; Au Sens des Constructeurs :
+; Soit compare la fonction -> Boolean
+;  F(e,_) = "Arguments n'est pas une liste :" e
+;  F(_,e) = "Arguments n'est pas une liste :" e
+;  F([],[]) = true
+;  F([],l) = false
+;  F(l,[]) = false
+;  F([],l2) = true
+;  F(e°l1,l2) = DEBUT REMOVE
+;              Soit remove la fonction -> list
+;               F(e,[]) = []
+;               F(e, le°l) = if (e==le) then l else le&(remove e l)
+;              FIN REMOVE
+;              compare l1 (remove e l2)
+;@remove_first
+;@PARAMETERS element, list
+;@RETURN list without the first occurence of element
+(defun remove_first (e l)
+  (cond
+    ((null l) nil)
+    ((eq (first l) e) (cdr l))
+    (t (cons (first l) (remove_first e (cdr l))))
+  )
+)
+;@show_notlist
+;@PARAMETER element
+(defun show_notlist (e)
+  (princ "Arguments n'est pas une liste: ")
+  (princ e)
+)
+;@compare
+;@PARAMETER list1, list2f
+;@RETURN true if list1 <=> list2, false sinon
+(defun compare (l1 l2)
+  (cond
+    ((not (listp l1)) show_notlist(l1))
+    ((not (listp l2)) show_notlist(l2))
+    ((and (null l1) (null l2)) t)
+    ((and (null l1) (listp l1)) nil)
+    ((and (listp l1) (null l1)) nil)
+    (t (compare (cdr l1) (remove_first (first l1) l2)))
+  )
+)
+;test
+(compare l1 l4)
+(compare l4 l1)
+(compare l1 l3)
+(compare l3 l1)
+;
+; unique
+; Au sens des constructuer :
+; Soit unique -> list
+; f([]) -> []
+; f(e°l) -> if (e in l) then unique l else e&(unique l)
+; rec non terminal
+;@unique_nonterm
+;@PARAM list
+;@RETURN list without duplicates elements
+(defun unique_nonterm (l)
+  (cond
+    ((null l) nil)
+    ((in (first l) (cdr l)) (unique_nonterm (cdr l)))
+    (t (cons (first l) (unique_nonterm (cdr l))))
+  )
+)
+; rec terminal
+;@uniqe
+;@PARAM list1, list2
+;@RETURN not duplicates elements of list1 concat to list2
+(defun unique (l acc)
+  (cond
+    ((null l) acc)
+    ((in (first l) acc) (unique (cdr l) acc))
+    (t (unique (cdr l) (cons (first l) acc)))
+  )
+)
+;test
+; Show the lists
+(unique_nonterm l1)
+(unique_nonterm l2)
+(unique l1 nil)
+(unique l2 nil)
+; Prove that both term && not term solve the pb :p
+(setq r1_nt (unique_nonterm l1) r2_nt (unique_nonterm ld) r1_t (unique l1 nil) r2_t (unique ld nil))
+(compare r1_nt r1_t)
+(compare r2_nt r2_t)
+;
+; reunion
+; Au sens des constructuer :
+; Soit reunion -> list
+; f([],E) -> E
+; f(e°l, E) -> if (e in E) then reunion l E else e&(reunion l E)
+;@reunion_rec
+;@PARAM list, ensemble
+;@RETURN E(listUe)
+(defun reunion_rec (l e)
+  (cond
+    ((null l) e)
+    ((in (first l) e) (reunion_rec (cdr l) e))
+    (t (reunion_rec (cdr l) (cons (first l) e)))
+  )
+)
+;@reunion
+;@PARAM list1, list2
+;@RETURN Ensemble list1Ulist2
+(defun reunion (l1 l2)
+  (reunion_rec l1 (unique l2 nil))
+)
+;test
+(defun __print_reunion (l1 l2)
+  (princ "Réunion liste : ")
+  (princ l1)
+  (princ " et ")
+  (princ l2)
+)
+(__print_reunion l1 l2)
+(reunion l1 l2)
+(__print_reunion l2 l3)
+(reunion l2 l3)
+(__print_reunion l1 l1)
+(reunion l1 l1)
+;
+; inter
+; Au sens des constructuer :
+; Soit inter -> list
+; f([],l2) -> []
+; f(e°l, l2) -> if ((e in l) ou alors not (e in l2) then reunion l E else e&(reunion l E)
+;@inter_rec
+;@PARAM list1,list2,list3
+;@RETURN list3 (= list1^list2)
+(defun inter_rec (l1 l2 acc)
+  (cond
+    ((null l1) acc)
+    ((and (in (first l1) (cdr l1)) (in (first l1) acc)) (inter_rec (cdr l1) l2 acc))
+    ((in (first l1) l2) (inter_rec (cdr l1) l2 (cons (first l1) acc)))
+    (t (inter_rec (cdr l1) l2 acc))
+  )
+)
+;@inter
+;@PARAM list1, list2
+;@RETURN list1^list2
+(defun inter (l1 l2)
+  (inter_rec l1 l2 nil)
+)
+;test
+(defun __print_inter (l1 l2)
+  (princ "Intersection liste : ")
+  (princ l1)
+  (princ " et ")
+  (princ l2)
+)
+(__print_inter l1 l2)
+(inter l1 l2)
+(__print_inter l2 l3)
+(inter l2 l3)
+(__print_inter l1 l1)
+(inter l1 l1)
+; ------------------------------------------------------------------------------
