@@ -18,6 +18,13 @@
     ($ $ $ $ $ $ $ $ $ $ $ $)
   )
 )
+(setq lab1 '(
+    ($ $ $ $ )
+    (- - - - )
+    ($ - $ fin)
+    ($ - - $ )
+  )
+)
 ;
 ;@in
 ;@PARAMETERS element, list
@@ -25,7 +32,7 @@
 (defun in (a l)
   (cond
     ((null l) nil)
-    ((eq a 0) (cond 
+    ((eq a 0) (cond
                 ((eq (first l) '-))
                 ((eq (first l) 'fin))
               ))
@@ -54,7 +61,7 @@
 (check lab '(1 1))
 (check lab '(3 1))
 (check lab '(6 11))
-;@replace_list 
+;@replace_list
 ;@PARAM list, n, val
 ;@RETURN list with nth elmnt replace by value
 (defun replace_list (a l c)
@@ -92,6 +99,7 @@
   (if (check labyrinthe b) (setq tmp (+ tmp 2)))
   (if (check labyrinthe c) (setq tmp (+ tmp 4)))
   (if (check labyrinthe d) (setq tmp (+ tmp 8)))
+  (setq tmp (+ tmp 0))
 )
 ;test
 (get_int lab '(0 1) '(1 1) '(4 1) '(5 1))
@@ -106,99 +114,99 @@
   )
   (replace_lab labyrinthe start '*)
   (setq val (get_int labyrinthe h b g d))
-  (print (check labyrinthe h))
-  (print (check labyrinthe b))
-  (print (check labyrinthe g))
-  (print (check labyrinthe d))
-  (print val)
+  ; (print (check labyrinthe h))
+  ; (print (check labyrinthe b))
+  ; (print (check labyrinthe g))
+  ; (print (check labyrinthe d))
+  ; (print val)
   (cond
     (
-      (eq val 15) 
+      (eq val 15)
       (list h (read_lab labyrinthe h) b (read_lab labyrinthe b)
            g (read_lab labyrinthe g) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 14) 
+      (eq val 14)
       (lis b (read_lab labyrinthe b)
            g (read_lab labyrinthe g) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 13) 
+      (eq val 13)
       (list h (read_lab labyrinthe h)
            g (read_lab labyrinthe g) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 12) 
+      (eq val 12)
       (list g (read_lab labyrinthe g) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 11) 
+      (eq val 11)
       (list h (read_lab labyrinthe h) b (read_lab labyrinthe b)
             d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 10) 
+      (eq val 10)
       (list b (read_lab labyrinthe b) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 9) 
+      (eq val 9)
       (list h (read_lab labyrinthe h) d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 8) 
+      (eq val 8)
       (list  d (read_lab labyrinthe d)
       )
     )
     (
-      (eq val 7) 
+      (eq val 7)
       (list h (read_lab labyrinthe h) b (read_lab labyrinthe b)
            g (read_lab labyrinthe g)
       )
     )
     (
-      (eq val 6) 
+      (eq val 6)
       (list b (read_lab labyrinthe b)
             g (read_lab labyrinthe g)
       )
     )
     (
-      (eq val 5) 
+      (eq val 5)
       (list h (read_lab labyrinthe h)
            g (read_lab labyrinthe g)
       )
     )
     (
-      (eq val 4) 
+      (eq val 4)
       (list g (read_lab labyrinthe g)
       )
     )
     (
-      (eq val 3) 
+      (eq val 3)
       (list h (read_lab labyrinthe h) b (read_lab labyrinthe b)
       )
     )
     (
-      (eq val 2) 
+      (eq val 2)
       (list b (read_lab labyrinthe b)
       )
     )
     (
-      (eq val 1) 
+      (eq val 1)
       (list h (read_lab labyrinthe h))
     )
     (t nil)
   )
 )
 ; ;test
-(trace read_lab)
-(read_lab lab '(1 0))
+; (trace read_lab)
+(read_lab lab1 '(1 0)); (h b g d)
 
 ; (1 2 4 8) -> 15
-; (h b g d) 
+; (h b g d)
