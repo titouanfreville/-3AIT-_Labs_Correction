@@ -13,7 +13,6 @@
 ; Il doit être exécutable ~~ 
 ; coder sous linux via SUBLIME TEXT 3 + Sublime REPL + CLISP
 
-
 ; ; ---- TP 1 --------------------------------------------------------------------
 ; ; --------- 1 ------------------------------------------------------------------
 ; ; Au Sens des Constructeurs :
@@ -298,6 +297,7 @@
   (defparameter carre (Carre i))
   (defparameter cube (Cube i))
   (format t "Square: = ~W~% Cube = ~W" carre cube)
+  (terpri)
 )
 ;test
 (Afficher)
@@ -482,11 +482,11 @@
   (princ " et ")
   (princ l2)
 )
-(__print_reunion l1 l2)
+; (__print_reunion l1 l2)
 (reunion l1 l2)
-(__print_reunion l2 l3)
+; (__print_reunion l2 l3)
 (reunion l2 l3)
-(__print_reunion l1 l1)
+; (__print_reunion l1 l1)
 (reunion l1 l1)
 ;
 ; inter
@@ -518,15 +518,15 @@
   (princ " et ")
   (princ l2)
 )
-(__print_inter l1 l2)
+; (__print_inter l1 l2)
 (inter l1 l2)
-(__print_inter l2 l3)
+; (__print_inter l2 l3)
 (inter l2 l3)
-(__print_inter l1 l1)
+; (__print_inter l1 l1)
 (inter l1 l1)
 ; ------------------------------------------------------------------------------
 ; ---- TP 5 --------------------------------------------------------------------
-; SET TREEE
+; SET TREE
 (setq tree
             '(+
               (*
@@ -539,26 +539,81 @@
               )
             )
 )
-;@triple_print
-(defun triple_print(a b c)
-  (princ a)
-  (princ " ")
-  (princ b)
-  (princ " ")
-  (princ c)
-  (princ " ")
-)
 ;@inordre
 ;@PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM)
 ;@RETURN fun(el a) in ordre (FG-R-FD)
 (defun inordre (fun tree)
   (cond
     ((null tree))
-    ((null (cdr tree)) (funcall fun (first tree)))
-    (t (triple_print (inordre fun (second tree)) (funcall fun (first tree)) (inordre fun (second (cdr tree)))))
+    ((null (cdr tree)) (progn
+                          (funcall fun (first tree))
+                          (princ " ")
+                        ))
+    (t (progn
+         (inordre fun (second tree))
+         (funcall fun (first tree))
+         (princ " ")
+         (inordre fun (second (cdr tree)))
+        ))
   )
 )
 ;test
-; (trace inordre)
 (inordre 'princ tree)
+(terpri)
 ;
+;@postordre
+;@PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM)
+;@RETURN fun(el a) in ordre (FG-FD-R)
+(defun postordre (fun tree)
+  (cond
+    ((null tree)(fun " "))
+    ((null (cdr tree)) (progn 
+                         (funcall fun (first tree))
+                         (princ " ")
+                        ))
+    (t (progn
+         (postordre fun (second tree))
+         (postordre fun (second (cdr tree)))                  
+         (funcall fun (first tree))
+         (princ " ")
+        ))
+  )
+)
+;test
+(postordre 'princ tree)
+(terpri)
+;
+;@largeur
+;@PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM)
+;@RETURN fun(el a) in ordre (R-FG-FD)
+(setq tree
+            '(+
+              (*
+                (4)
+                (3)
+              )
+              (*
+                (5)
+                (2)
+              )
+            )
+)
+(defun largeur (fun tree)
+  (cond
+    ((null tree))
+    ((listp (first tree))(progn
+                            (funcall fun (first (first tree)))
+                            (princ " ")
+                            (largeur fun (cdr tree))
+                            (largeur fun (cdr (first tree)))
+                         ))
+    (t (progn                  
+         (funcall fun (first tree))
+         (princ " ")
+         (largeur fun (cdr tree))
+        ))
+  )
+)
+;test
+(largeur 'princ tree)
+; ------------------------------------------------------------------------------
