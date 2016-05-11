@@ -13,6 +13,7 @@ Fill free to understand them and adapt them. Copy/Paste them is not a good idea 
 | TP 2      | 1        | easy_labs.lisp                     | 180 to 214  |
 |           | 2        | easy_labs.lisp                     | 215 to 253  |
 |           | 3        | easy_labs.lisp                     | 254 to 326  |
-| TP 3      | x        | easy_labs.lisp                     | 327 to 528  |
-| TP 4      | 1        | the_lab_that_should_not_exist.lisp | Stand Alone |
-| TP 5      | x        | easy_labs.lisp                     | 529 to 528  |
+| TP 3      |          | easy_labs.lisp                     | 327 to 528  |
+| TP 4      |          | the_lab_that_should_not_exist.lisp | Stand Alone |
+| TP 5      |          | easy_labs.lisp                     | 529 to 528  |
+| TP 6      |          | laby.lisp                          | Stand Alone |g

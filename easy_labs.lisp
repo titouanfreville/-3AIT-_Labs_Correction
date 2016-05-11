@@ -338,7 +338,7 @@
 ;                       non Vide(L2) : Premier(L2) == i ou alors appartient (i, Fin L2)
 ;                FIN APPARTIENT
 ;                et include (FIN L1, L2)$
-; @defun
+; @in
 ; @PARAMETERS element, list
 ; @RETURN true si element in list, false sinon
 (defun in (a l)
