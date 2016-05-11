@@ -3,7 +3,9 @@ Here will be upload my corrections of the Supinfo [3AIT] courses.
 
 Fill free to understand them and adapt them. Copy/Paste them is not a good idea for you as you will not learn from it ~~
 
-## List of corrections available
+## List of corrections available (lisp)
+
+In lisp folder :)
 
 | TP number | TP group | File to consult                    | Lines       |
 | --------- | -------- | ---------------------------------- | ----------- |
@@ -17,3 +19,5 @@ Fill free to understand them and adapt them. Copy/Paste them is not a good idea 
 | TP 4      |          | the_lab_that_should_not_exist.lisp | Stand Alone |
 | TP 5      |          | easy_labs.lisp                     | 529 to 528  |
 | TP 6      |          | laby.lisp                          | Stand Alone |g
+
+## List of correction (CAML -> All tps, in CAML :)
