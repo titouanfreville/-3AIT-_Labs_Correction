@@ -32,3 +32,18 @@ Guess where :p
 | TP 2      | 3        | tp1_to_3.ml     | 149 to 257  |
 | TP 3      |          | tp1_to_3.ml     | 258 to 427  |
 | TP 5      |          | tree.ml         | Stand Alone |
+
+
+## List of correction (Pyhton -> All tps, in CAML :)
+
+Guess where :p
+
+| TP number | TP group | File to consult | Lines       |
+| --------- | -------- | --------------- | ----------- |
+| TP 1      | 1        | tp1_to_3.ml     | 22 to 57    |
+|           | 2        | tp1_to_3.ml     | 56 to 89    |
+|           | 3        | tp1_to_3.ml     | 90 to 148   |
+| TP 2      | 3        | tp1_to_3.ml     | 149 to 257  |
+| TP 3      |          | tp1_to_3.ml     | 258 to 427  |
+| TP 5      |          | tree.ml         | Stand Alone |
+| TP 9      | 1        | lab9.py         | 8 to 162    |
