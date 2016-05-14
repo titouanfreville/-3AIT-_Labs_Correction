@@ -585,7 +585,7 @@
 ;
 ;@largeur
 ;@PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM)
-;@RETURN fun(el a) in ordre (R-FG-FD)
+;@RETURN fun(el a) in ordre (h0,h1,...,hn)
 (setq tree
             '(+
               (*
