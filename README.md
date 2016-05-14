@@ -32,4 +32,3 @@ Guess where :p
 | TP 2      | 3        | tp1_to_3.ml     | 149 to 257  |
 | TP 3      |          | tp1_to_3.ml     | 258 to 427  |
 | TP 5      |          | tree.ml         | Stand Alone |
-| TP 6      |          | laby.lisp       | Stand Alone |
