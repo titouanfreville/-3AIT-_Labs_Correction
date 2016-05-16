@@ -56,7 +56,21 @@
     (t (check (cdr labyrinthe) (list (- x 1) y)))
   )
 )
+
+(defun check_nth (labyrinthe point)
+  (setq x (first point) y (second point))
+  (setq val (nth y (nth x labyrinthe)))
+  (cond
+    ((eq val '-))
+    ((eq val'fin))
+  ))
+)
 ;test
+(check_nth lab '(0 1))
+(check_nth lab '(1 1))
+(check_nth lab '(3 1))
+(check_nth lab '(6 11))
+
 (check lab '(0 1))
 (check lab '(1 1))
 (check lab '(3 1))
@@ -114,11 +128,6 @@
   )
   (replace_lab labyrinthe start '*)
   (setq val (get_int labyrinthe h b g d))
-  ; (print (check labyrinthe h))
-  ; (print (check labyrinthe b))
-  ; (print (check labyrinthe g))
-  ; (print (check labyrinthe d))
-  ; (print val)
   (cond
     (
       (eq val 15)
@@ -206,7 +215,4 @@
 )
 ; ;test
 ; (trace read_lab)
-(read_lab lab1 '(1 0)); (h b g d)
-
-; (1 2 4 8) -> 15
-; (h b g d)
+(read_lab lab1 '(1 0))

@@ -156,7 +156,7 @@ let rec RetourneValeur list e = match list with
   | t::q -> t==e || RetourneValeur q;;
 (* Here a good point of Functionnal langage in most of case : the functions have the lowest level of type possible,
 if you don't use specifics operators, it will have a neutral type like here. Function search_color from TP 1 &&
-this one are exactly the same and will work with any type of data, as long as it is a list of simple type format. 
+this one are exactly the same and will work with any type of data, as long as it is a list of simple type format.
 Will not work if your list is of an own define type, make sure to improve Pervasive library so it will still work ;) *)
 
 (* Carre *)
@@ -185,9 +185,9 @@ let cube f = match f with
 let rec pow f n = match n with
   | 0 -> 1.
   | _ -> pow f (n-1) *. f;;
-(*  This one will work for any n given but will be stopped by your computer limits 
+(*  This one will work for any n given but will be stopped by your computer limits
 If you want to get ride of this, we have to use TERMINAL RECURSIVES function. This mean
-that when you call the recersive function, you are not allowed to make any operation on it. 
+that when you call the recersive function, you are not allowed to make any operation on it.
 It have to be auto suffisent. For pow, it will give *)
 (* @pow_term*)
 (* @PARAMETERS float i, int n, float res *)
@@ -199,7 +199,7 @@ let rec pow_term f n res = match n with
 (* @use_pow_term *)
 (* @PARAMETERS float i, int n *)
 (* @RETURN i^n *)
-let use_pow_term f n = 
+let use_pow_term f n =
   pow_term f n 1.;;
 (* TEST :) *)
 let f1 = 0.;;
@@ -230,26 +230,26 @@ use_pow_term f4 n3;;
 pow f4 n4;;
 use_pow_term f4 n4;;
 (* Multi : the aim of multi in LISP is to create a NAME function within a function so we can use it after.
-We can't do this in FUNCTIONNAL caml as we can't manipulate the pointers. (not really true, but some one 
-will kill kittie if you do so :p But we can do something funnier... We can define a function that return .... 
+We can't do this in FUNCTIONNAL caml as we can't manipulate the pointers. (not really true, but some one
+will kill kittie if you do so :p But we can do something funnier... We can define a function that return ....
 A function :O As function are objects from the langage, we can use it in parameters or as return values ^^ *)
-let multi n = 
+let multi n =
   (function m -> n *. m);;
-(* Let's use this to interprete the return values of CAML ;) 
-As you pb so, caml return's value when defining a function are quite long ... 
-It provide you the information about what types of arguments are expected, and the type of the 
-object that will be returned by the function 
-here, the retrun is something like : 
- val multi : float -> float -> float 
+(* Let's use this to interprete the return values of CAML ;)
+As you pb so, caml return's value when defining a function are quite long ...
+It provide you the information about what types of arguments are expected, and the type of the
+object that will be returned by the function
+here, the retrun is something like :
+ val multi : float -> float -> float
 val multi say that we defined an object Multi. We know that multi expect 1 parameter. It is the one at the top left of
-the return, and here, is a float. Then we have a -> that give the next argument (if your function 
+the return, and here, is a float. Then we have a -> that give the next argument (if your function
 expect multiple arguments), or what is return. Here, we can have no more arguments to define so it's the return
-of the function ... The return is always one object (you can't make a function return multiple objects ;) ) 
-but we have float -> float ... wich mean that the object returned is a Function of Float which will return 
+of the function ... The return is always one object (you can't make a function return multiple objects ;) )
+but we have float -> float ... wich mean that the object returned is a Function of Float which will return
 a float :) *)
 (* Proof *)
 let multiply = multi 4.;;
-multiply 2.;; 
+multiply 2.;;
 (* Funny, isn't it ? :p *)
 (* Also, if you want to call a known function, just call it with the good arguments ... But if you want to call
 an unknow function, use (function (parmeters) -> (operations) as in multi *)
@@ -315,10 +315,10 @@ F(e°l1,l2) = DEBUT REMOVE
 (* @remove_first *)
 (* @PARAMETERS element, list l, list acc*)
 (* @RETURN l without the first occurence of element *)
-let rec term_remove_first e list acc = match list with 
+let rec term_remove_first e list acc = match list with
   | [] -> acc
   | t::q -> if (e==t) then q@acc else term_remove_first e q (t::acc);;
-let remove_first e l = 
+let remove_first e l =
   term_remove_first e l [];;
 (* @compare *)
 (* @PARAMETER list1, list2f *)
@@ -373,7 +373,7 @@ let rec quick_sort l = match l with
   | [] -> []
   | t::[] -> [t]
   | _ -> let (l1,l2) = split l [] [] in fusion (quick_sort l1) (quick_sort l2);;
-let unique l = 
+let unique l =
   term_unique (quick_sort l) [];;
 (*test *)
 quick_sort l1;;
@@ -394,7 +394,7 @@ unique l_uni;;
 (* @reunion_rec *)
 (* @PARAM l list, e ensemble *)
 (* @RETURN E(lUe) *)
-let rec reunion_rec l e = match l with 
+let rec reunion_rec l e = match l with
   | [] -> e
   | t::q -> if (l_in t e) then reunion_rec q e else reunion_rec q (t::e);;
 (* @reunion *)
