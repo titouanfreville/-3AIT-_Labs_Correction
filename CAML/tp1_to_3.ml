@@ -55,7 +55,7 @@ find_color rest_red_1;;
 find_color rest_red_1;;
 (* TP 1 - 2 - AUTANT DE 1 QUE DE 0 *)
 (* (X,Y,Z,...) is a tuple of X, Y, Z, etc ...
-   access can be done with tuple.p_element
+   access must be done by matching : (let (x,y,z,...)=tuple)
 *)
 let rec asmuch_naive_rec list n1 n0 =
   match list with
