@@ -3,8 +3,8 @@
 #### Feel free to use this to improve, but don't copy them ####
 ###############################################################
 
-# This is the reinterpretation of tp 1 to 3 for python 
-# Python tested using python 2 on Ubuntu ;) 
+# This is the reinterpretation of tp 1 to 3 for python
+# Python tested using python 2 on Ubuntu ;)
 # FUNCTION ON LISTS WITHOUT DELETE
 # @car
 # @PARAM list
@@ -79,7 +79,7 @@ print find_color(l2,'blue')
 print l3
 print find_color(l3,'blue')
 # #############################################################
-# TP 1 - 1 : Autant de 1 que de 0
+# TP 1 - 2 : Autant de 1 que de 0
 # As much as : naive
 # @asmuch_naive
 # @PARAM list compt
@@ -125,4 +125,52 @@ print l5
 print asmuch_last(l5)
 print l6
 print asmuch_last(l6)
+# #############################################################
+# #############################################################
+# TP 1 - 3 : Plus de 1 ou de 0
+# As much as : naive
+# @more_naive
+# @PARAM list compt
+# @RETURN True if more 0 or 1 , false else
+def more_naive (l,n):
+  if len(l) > 0 :
+    if (car(l)==1):
+      return more_naive (cdr(l),n+1)
+    else:
+      return more_naive (cdr(l),n-1)
+  else:
+    return (n!=0)
+# As much : using last
+# @more_last
+# @PARAM list
+def more_last (l):
+  if len(l) > 1 :
+    if (car(l)==last(l)):
+      return True
+    else:
+      return more_last (butlast(cdr(l)))
+  else:
+    if len(l) > 0 :
+      return True
+    else:
+      return False
+# #############################################################
+# Test ########################################################
+l4=[1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0]
+l5=[1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0]
+l6=[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0]
+print "Result more_naive for list : "
+print l4
+print more_naive(l4,0)
+print l5
+print more_naive(l5,0)
+print l6
+print more_naive(l6,0)
+print "Result more_last for list : "
+print l4
+print more_last(l4)
+print l5
+print more_last(l5)
+print l6
+print more_last(l6)
 # #############################################################
