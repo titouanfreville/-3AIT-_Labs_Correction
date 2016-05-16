@@ -80,6 +80,7 @@ print l3
 print find_color(l3,'blue')
 # #############################################################
 # TP 1 - 2 : Autant de 1 que de 0
+# Function ####################################################
 # As much as : naive
 # @asmuch_naive
 # @PARAM list compt
@@ -128,6 +129,7 @@ print asmuch_last(l6)
 # #############################################################
 # #############################################################
 # TP 1 - 3 : Plus de 1 ou de 0
+# Function ####################################################
 # As much as : naive
 # @more_naive
 # @PARAM list compt
@@ -174,3 +176,23 @@ print more_last(l5)
 print l6
 print more_last(l6)
 # #############################################################
+# -------------------------------------------------------------------------------------
+# TP 2 - Les fonctions Python ---------------------------------------------------------
+# For part 1 and 2 of this TP, refer to Labs 9 (in lab9.py)
+# Function ####################################################
+# TP 2 - 3 : Les Fonctions
+# @RetournerValeur
+# @PARAM e of el, list (of el,xx)
+# @RETURN xx if e in list False else (?)
+def RetournerValeur (e,l):
+  if len(l) > 1 :
+    if (car(l)==e):
+      return cdr(car(l))
+    else:
+      return RetournerValeur(e,cdr(l))
+  else:
+    if len(l) > 0 :
+      return False
+# #############################################################
+# Test ########################################################
+l_val=[[12,c],[54,g],[t,67],[v,(z,t)]]
