@@ -119,7 +119,7 @@
 (get_int lab '(0 1) '(1 1) '(4 1) '(5 1))
 ;@read_lab
 ;@PARAM labyrinthe comming with FIN, DEBUT(x,y) point to start on
-;@RETRUN all trees able to go from start to end
+;@RETURN all trees able to go from start to end
 (defun read_lab (labyrinthe start)
   (setq h (list (+ (first start) 1) (second start))
         b (list (- (first start) 1) (second start))
