@@ -41,11 +41,20 @@ def butlast (le):
 # car ne necessite pas de connaitre le nb d'axiomes.
 # Une regles est donc un tuples d'une liste et d'un string. :)
 # ########## DEFINITIONS DES REGLES ########## #
-regles = [(['animal est oiseau','animal vole bien','animal marche mal'],'albatros',),];
+regles = [
+(['animal a des plumes','animal a des ailes'],'animal est oiseau',),
+(['animal alaite'],'animal est mamifere',),
+(['animal est invertebre'],'animal est arachnide',),
+(['animal est oiseau','animal vole bien','animal marche mal'],'albatros',),
+(['animal est oiseau','animal vole mal','animal nage bien'],'manchot',),
+(['animal est oiseau','animal vole bien','animal nage bien','annimal vit au pole sud'],'pinguoin',),
+(['animal est mamifere','animal vit dans l eau'],'cetace',),
+(['animal est arachnide','animal est velue'],'areignee',),
+(['animal est arachnide','animal est venimeux'],'scorpion',)
+];
 # ########## ########## ########## #
 # ########## INIT FACTS ########## #
 faitsinitiaux = {
-  'animal est oiseau': True,
 }
 # ########## ERRORS ########## #
 # @ERROR : ElementUnkow
@@ -102,9 +111,6 @@ def demander(fact, question):
 # @PARAM list axiom, init_fact, memoire
 # @RETURN true if axiom all true in init_fact && memoire, false else
 def verifie(axioms, init_fact,memoire):
-  print axioms
-  print init_fact
-  print memoire
   if len(axioms) > 0 :
     val = car(axioms)
     if connais(val, init_fact, memoire) is not None:
@@ -129,15 +135,9 @@ def justifie(fait, regles, memoire, init_fact):
 # @PARAM diagnositics list, rules, init_fact, memory
 # @RETURN True if a diagnostic was confirmed, false else
 def depart(diagnostics, rules, init_fact,memory):
-  print diagnostics
-  print rules
-  print init_fact
-  print memory
   l=list(diagnostics)
   if len(l) > 0 :
     val=car(l)
-    print val
-    print justifie (val, rules, memory, init_fact)
     if (justifie (val, rules, memory, init_fact)):
       print "You were searching for "+str(val)+", weren't you ?"
       return True
@@ -175,7 +175,7 @@ def depart(diagnostics, rules, init_fact,memory):
 # @RETURN True if something was determined, false else
 def main(rules):
   print rules
-  diagnostics=['albatros']
+  diagnostics=['albatros','scorpion','manchot','pinguoin','cetace','areignee']
   print diagnostics
   return depart(diagnostics, rules, faitsinitiaux, {})
 
