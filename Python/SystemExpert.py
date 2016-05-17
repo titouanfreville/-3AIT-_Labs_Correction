@@ -35,7 +35,7 @@ def butlast (le):
   return le
 # -------------------------------------------------------------------------------------
 # Labs --------------------------------------------------------------------------------
-# TP 9 - 2 - A PARTIR DES ELEMENTS VUS EN COURS REALISER UN SYSTEME EXPERT
+# TP 9 - 2 - A PARTIR DES ELEMENTS VUS EN COURS REALISER UN SYSTEME EXPERT (2 to 3hrs)
 # Il est dit d utiliser des TUPLES et non des LISTES pour les axiomes du systemes expert.
 # Apres discussion avec le professeur, le systeme liste est plus pertinant
 # car ne necessite pas de connaitre le nb d'axiomes.
