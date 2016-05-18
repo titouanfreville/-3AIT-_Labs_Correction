@@ -15,11 +15,8 @@ def car (l):
 # @cdr
 # @PARAM list
 # @RETURN list without head
-def cdr (le):
-  le=list(le)
-  e = car (le)
-  le.remove (e)
-  return le
+def cdr (l):
+  return l[1:]
 # @last
 # @PARAM list
 # @RETURN value of the last element in list
@@ -28,10 +25,8 @@ def last (l):
 # @butlast
 # @PARAM list
 # @RETURN list without last element
-def butlast (le):
-  le=list(le)
-  le.pop(-1)
-  return le
+def butlast (l):
+  return l[:-1]
 
 liste=[0,1,2,3,4,5]
 print liste

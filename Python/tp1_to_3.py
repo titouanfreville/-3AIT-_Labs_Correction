@@ -5,7 +5,7 @@
 
 # This is the reinterpretation of tp 1 to 3 for python
 # Python tested using python 2 on Ubuntu ;)
-# FUNCTION ON LISTS WITHOUT DELETE
+# FUNCTION ON LISTS WITHOUT DELETE -----------------------------------------------------
 # @car
 # @PARAM list
 # @RETURN first element
@@ -14,11 +14,8 @@ def car (l):
 # @cdr
 # @PARAM list
 # @RETURN list without head
-def cdr (le):
-  le=list(le)
-  e = car (le)
-  le.remove (e)
-  return le
+def cdr (l):
+  return l[1:]
 # @last
 # @PARAM list
 # @RETURN value of the last element in list
@@ -27,10 +24,8 @@ def last (l):
 # @butlast
 # @PARAM list
 # @RETURN list without last element
-def butlast (le):
-  le=list(le)
-  le.pop(-1)
-  return le
+def butlast (l):
+  return l[:-1]
 # -------------------------------------------------------------------------------------
 # Labs --------------------------------------------------------------------------------
 # TP 1 -  La Programmation Fonctionnelle (done with a langage :O) ---------------------

@@ -16,11 +16,8 @@ def car (l):
 # @cdr
 # @PARAM list
 # @RETURN list without head
-def cdr (le):
-  le=list(le)
-  e = car (le)
-  le.remove (e)
-  return le
+def cdr (l):
+  return l[1:]
 # @last
 # @PARAM list
 # @RETURN value of the last element in list
@@ -29,10 +26,8 @@ def last (l):
 # @butlast
 # @PARAM list
 # @RETURN list without last element
-def butlast (le):
-  le=list(le)
-  le.pop(-1)
-  return le
+def butlast (l):
+  return l[:-1]
 # -------------------------------------------------------------------------------------
 # Labs --------------------------------------------------------------------------------
 # TP 9 - 2 - A PARTIR DES ELEMENTS VUS EN COURS REALISER UN SYSTEME EXPERT (2 to 3hrs)
