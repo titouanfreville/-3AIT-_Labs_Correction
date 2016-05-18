@@ -66,13 +66,12 @@ class ElementUnkow(Exception):
 # @RETURN Fact's axioms (string list)
 # @THROW ElementUnknow if element don't exist
 def dansalors(fact, rules):
-  if len(rules) > 0 :
-    if (car(rules)[1]==fact):
-      return car(rules)[0]
-    else:
-      return dansalors(fact,cdr(rules))
-  else:
+  if rules==[] :
     raise ElementUnkow('Fact '+str(fact)+' was not known.')
+  elif car(rules)[1] == fact :
+    return car(rules)[0]
+  else:
+    return dansalors(fact,cdr(rules))
 # @connais
 # @PARAM fact, initial_facts (map), memory (map)
 # @RETURN Value (bool) of the fact if fact in initials or memory, None else
@@ -106,37 +105,38 @@ def demander(fact, question):
 # @PARAM list axiom, init_fact, memoire
 # @RETURN true if axiom all true in init_fact && memoire, false else
 def verifie(axioms, init_fact,memoire):
-  if len(axioms) > 0 :
-    val = car(axioms)
-    if connais(val, init_fact, memoire) is not None:
-      if (connais(val, init_fact, memoire)):
-        return verifie(cdr(axioms),init_fact,memoire)
-      else:
-        return False
+    if axioms==[]:
+      return True
     else:
-      return False
-  else:
-    return True
+      val = car(axioms)
+      if connais(val, init_fact, memoire) is not None:
+        if (connais(val, init_fact, memoire)):
+          return verifie(cdr(axioms),init_fact,memoire)
+        else:
+          return False
+      else:
+        return None
 # @justifie
 # @PARAM fait, regles, memoire, init_fact
-# @RETURN Tue if fact can be justify False else
+# @RETURN Tue if fact can be justify False else, None if fact can't be justifie (no false value, but not all complete)
 def justifie(fait, regles, memoire, init_fact):
   l=list(dansalors(fait, regles))
-  if len(l) > 0 :
-    return verifie(l,init_fact,memoire)
-  else:
+  if l==[]:
     raise ElementUnkow('Fact '+str(fait)+' was not define.')
+  else:
+    return verifie(l,init_fact,memoire)
 # @depart
 # @PARAM diagnositics list, rules, init_fact, memory
 # @RETURN True if a diagnostic was confirmed, false else
 def depart(diagnostics, rules, init_fact,memory):
   l=list(diagnostics)
-  if len(l) > 0 :
+  if l==[]:
+    print "You are searching for something that is out of my knowledge."
+    return False
+  else:
     val=car(l)
-    if (justifie (val, rules, memory, init_fact)):
-      print "You were searching for "+str(val)+", weren't you ?"
-      return True
-    else:
+    test=justifie (val, rules, memory, init_fact)
+    if test==None:
       ax=list(dansalors(car(l), regles))
       stop=False
       while(stop==False and len(ax)>0):
@@ -160,9 +160,12 @@ def depart(diagnostics, rules, init_fact,memory):
           return depart(cdr(diagnostics),rules,init_fact,memory)
       else:
         return depart(cdr(diagnostics),rules,init_fact,memory)
-  else:
-    print "You are searching for something that is out of my knowledge."
-    return False
+    elif test:
+      print "You were searching for "+str(val)+", weren't you ?"
+      return True
+    else:
+      print "You are searching for something that is out of my knowledge."
+      return False      
 # ########## ########## ########## #
 # ########## MAIN - TESTS ########## #
 # @main
@@ -173,6 +176,6 @@ def main(rules):
   diagnostics=['albatros','scorpion','manchot','pinguoin','cetace','areignee']
   print diagnostics
   return depart(diagnostics, rules, faitsinitiaux, {})
-
+# Test :)
 main(regles)
 # ########## ########## ########## #
