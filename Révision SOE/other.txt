@@ -52,12 +52,28 @@ Soit Fibo -> valeur (int)
   n=0 ou alors n=1: 1
   n: F(n-1)+F(n-2)
 
-> Ecrire selon les constructeur une fonction qui inverse l'ordre des élément d'une liste
+_ == rond plein
+° == rond vide
 
+> Ecrire selon les constructeur une fonction qui inverse l'ordre des élément d'une liste (en forme 1 => avec seulement la list en paramètre)
+[ a z e r g h u i j k ]
+Soit inverse -> valeur (list)
+inverse([]) -> []
+inverse(e°[]) -> e
+inverse( e°L_d ) -> d°(inverse L)_e
 
 > Ecricre au sens des sélecteur la fonction membre renvoyant un Booléen.
+Soit membre -> value
+membre(a,list)
+Vide(list): false
+Non_Vide(list): Premier list = a ou alors membre (Fin list)
 
 > Ecrire en Fonctionnel une fonction permettant de trier une liste.
+Soit tri -> list
+tri(liste):
+tri([])-> list
+tri(e°[])-> list
+tri(e°L) -> ...... a= ...... dans e < ........ alors e°a ou alors ..........
 
 > Faire une fonction permettant de récupérer la valeur associer à une clé dans une liste de couples
 >AU SENS DES SELECTEUR
