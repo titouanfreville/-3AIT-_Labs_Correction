@@ -42,7 +42,7 @@ soit F(a) selon a
   a=3: a
   a: F(a-1)
 
-Fonction qui renvoi 3
+Fonction qui renvoi
 
 > Ecrire en fonctionnel un programme renvoyant le n ième élément de la suite de Fibbonachi
 f(n)= f(n-2) + f(n-1)
@@ -62,35 +62,24 @@ inverse([]) -> []
 inverse(e°[]) -> e
 inverse( e°L_d ) -> d°(inverse L)_e
 
-> Ecricre au sens des sélecteur la fonction membre renvoyant un Booléen.
-Soit membre -> value
-membre(a,list)
+> Ecrire au sens des sélecteur la fonction membre renvoyant un Booléen.
+Soit membre -> boolean
+membre(a,list): selon list
 Vide(list): false
-Non_Vide(list): Premier list = a ou alors membre (Fin list)
+Non_Vide(list): Premier list = a ou alors membre(a,Fin list)
 
 > Ecrire en Fonctionnel une fonction permettant de trier une liste.
 Soit tri -> list
 tri(liste):
 tri([])-> list
 tri(e°[])-> list
-tri(e°L) -> ...... a= ...... dans e < ........ alors e°a ou alors ..........
+tri(e°L) -> Soit (d°F)= tri(L) dans e < d alors e°a ou alors  d ° tri(e°F)
 
 > Faire une fonction permettant de récupérer la valeur associer à une clé dans une liste de couples
 >AU SENS DES SELECTEUR
-Soit F la fonction -> valeur :
-F(E,clé) : selon E
-  Vide (E) : null
-  Non Vide(E): Premier(Premier (E)) = clé alors Deuxième (Premier (E)) ou alors F (Fin(E),clé)
+[(clé1,valeur) (clé2,xxxxxxx) ....]
+
 
 >AU SENS DES CONSTRUCTEURS
-Soit F la fonction -> valeur:
-F([], clé) ->  null
-F((c,v)°E, clé) -> e = clé et puis v ou alors F(E, clé)
 
-> AU SENS DES CONSTRUCTEURS
-Soit tribulle_forme1 la fonction -> list
-  tribulle_forme1([]) -> []
-  tribulle_forme1(t°[]) -> t
-  tribulle_forme1(t°L) -> Soit (e°Q) = tribulle_forme1 L,
-    t < e et puis t°L ou alors e°tribulle_format1(t°Q)
 

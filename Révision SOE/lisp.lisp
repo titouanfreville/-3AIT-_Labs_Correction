@@ -3,10 +3,12 @@
 (defun in (a l)
   (cond
     ((null l) nil)
-    ((eq a 0) (cond
+    (
+      (eq a 0) (cond
                 ((eq (first l) '-))
                 ((eq (first l) 'fin))
-              ))
+               )
+    )
     (t (in (- a 1) (cdr l)))
   )
 )
