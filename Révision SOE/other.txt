@@ -1,0 +1,80 @@
+
+Question sur la prog fonctionnelle.
+
+Question de cours
+
+> Structure d'arbre
+  -> comme les arbres généalogiques
+  -> stucture ordonné logique (<,>, Vrai, Faux , etc .... ) , parcours facile (vérification), rapide à parcourir
+  -> SE/Labyrinthe :p
+
+> Qu'est ce qu'un système Expert
+  -> Système basé sur des règles (définis par des Experts => capactiés de base)
+  -> Base de fait (tout ce qu'il a apris -> définis par un Expert puis approfondi avec les Utilisateurs)
+  -> moteur d'inférence => comment le SE raisonne -(chargé d'exploiter le contenui de la base de connaissance par rapport aux règle )
+
+> Définitions des règles dans un SE
+  -> par des experts
+  -> simples :p
+  -> peuvent être contradictoire (mais c'est pas bien)
+
+
+> Science Cognitive
+  -> essaye de se rapprocher des capacités humaines (mémoire, raisonnement, perception, ...)
+
+> L’intelligence artificielle est-elle une science cognitive ?
+  -> Oui pour chaque particularité
+  -> "Non" au global car trop de spécifité non résolu ~~
+
+> Objectif de l'IA
+  -> Aider l'homme dans ses activité
+  -> Approfondir les connaissances
+
+> Test de turing (?)
+C'est un ensemble de test permettant de savoir si un individu est une machine ou un robot (il est possible pour un humain de se faire passer pour un robot (mais c'est très dur), impossible dans l'autre sens)
+
+Interprétation de programme
+
+> Que fait le programme suivant
+a>2
+Soit F la fonction -> valeur
+soit F(a) selon a
+  a=3: a
+  a: F(a-1)
+
+Fonction qui renvoi 3
+
+> Ecrire en fonctionnel un programme renvoyant le n ième élément de la suite de Fibbonachi
+f(n)= f(n-2) + f(n-1)
+
+Soit Fibo -> valeur (int)
+  F(n) selon n
+  n=0 ou alors n=1: 1
+  n: F(n-1)+F(n-2)
+
+> Ecrire selon les constructeur une fonction qui inverse l'ordre des élément d'une liste
+
+
+> Ecricre au sens des sélecteur la fonction membre renvoyant un Booléen.
+
+> Ecrire en Fonctionnel une fonction permettant de trier une liste.
+
+> Faire une fonction permettant de récupérer la valeur associer à une clé dans une liste de couples
+>AU SENS DES SELECTEUR
+Soit F la fonction -> valeur :
+F(E,clé) : selon E
+  Vide (E) : null
+  Non Vide(E): Premier(Premier (E)) = clé alors Deuxième (Premier (E)) ou alors F (Fin(E),clé)
+
+>AU SENS DES CONSTRUCTEURS
+Soit F la fonction -> valeur:
+F([], clé) ->  null
+F((c,v)°E, clé) -> e = clé et puis v ou alors F(E, clé)
+
+> AU SENS DES CONSTRUCTEURS
+Soit tribulle_forme1 la fonction -> list
+  tribulle_forme1([]) -> []
+  tribulle_forme1(t°[]) -> t
+  tribulle_forme1(t°L) -> Soit (e°Q) = tribulle_forme1 L,
+    t < e et puis t°L ou alors e°tribulle_format1(t°Q)
+

@@ -11,18 +11,18 @@ CAML is a HARD TYPED LANGAGE, type constructor help to create type so you can ma
 ALl the function are tested with SUBLIME REPL on linux (ocaml package install)
 *)
 
-(* CAML is a strong typed language, wich mean that you can't manipulate trees as list unlike LISP 
+(* CAML is a strong typed language, wich mean that you can't manipulate trees as list unlike LISP
 We need to create tree types (thought some types of tree are already include in CAML (search them on google ;) )
 *)
-(* Let's Define the binary tree type. Binary tree are tree who can only accept 2 child by nodes like the first 
+(* Let's Define the binary tree type. Binary tree are tree who can only accept 2 child by nodes like the first
 one presented*)
 type 'a  tree = E | L of 'a | N of 'a tree * 'a * 'a tree;;
 (* type : constructor for new type
  'a : mean an unkow type (but need to be fix in the tree created
  tree : name of the type
- | : separator for the different Value of a tree 
+ | : separator for the different Value of a tree
  here : a 'a tree is a tree that is E (Empty) or L (Leaf) of 'a type, or N (Node) of 'a tree,'a,'a tree *)
-(* To build the tree in the exemple, we'll need another type who can mix operators && numbers. Let's call it : 
+(* To build the tree in the exemple, we'll need another type who can mix operators && numbers. Let's call it :
 expression *)
 type expression = O of (int -> int -> int) | I of int;;
 
@@ -31,14 +31,14 @@ let t_course_printable = N(N(L("4"),"*",L("3")),"+",N(L("5"),"*",L("2")));;
 
 
 (* Now, let's play with it :) *)
-(* Let's build the tree using Graphicals ;*) 
+(* Let's build the tree using Graphicals ;*)
 (* Add graphics :) *)
 (* The following functions are helpfull when working on tree as you see quickly what is going wrong.
 Need to be adapted to your structure but is a good basics. *)
 #load "graphics.cma";;
 
 open Graphics;;
-let open_graph w h = 
+let open_graph w h =
   let st = " "^w^"x"^h in
     open_graph st;;
 let reset_graph =
@@ -52,7 +52,7 @@ open_graph "1000" "600";;
 (* @EFFECTS: draw the tree t from (x,y) point with first step h (steps height diveded by 2 each time) *)
 (* This print function go throught the tree as the R - FG - FD *)
 let rec tree_drawing t x y h w g_print =
-  let hw = w / 2 and hh = h / 2 in 
+  let hw = w / 2 and hh = h / 2 in
   match t with
   | L(l) -> moveto (x + hw) y; set_color green; g_print l; set_color black;
   | N(fg,r,fd) -> begin
@@ -75,18 +75,34 @@ magic_drawing t_course_printable draw_string;;
 (* @inordre *)
 (* @PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM) *)
 (* @RETURN fun(el a) in ordre (FG-R-FD) *)
-let rec inordre g_print t = 
+let rec inordre g_print t =
   match t with
   | L(l) -> g_print l
   | N(fg,r,fd) -> inordre g_print fg;g_print " "; g_print r; g_print " "; inordre g_print fd;
   | _ -> ();;
+
+(defun inordre (fun tree)
+  (cond
+    ((null tree))
+    ((null (cdr tree)) (progn
+                          (funcall fun (first tree))
+                          (princ " ")
+                        ))
+    (t (progn
+         (inordre fun (second tree))
+         (funcall fun (first tree))
+         (princ " ")
+         (inordre fun (second (cdr tree)))
+        ))
+  )
+)
 
 inordre print_string t_course_printable;;
 
 (* @postordre *)
 (* @PARAM function, arbre binaire (1 racine a 2 branches MAXIMUM) *)
 (* @RETURN fun(el a) in ordre (FG-FD-R) *)
-let rec postordre g_print t = 
+let rec postordre g_print t =
   match t with
   | L(l) -> g_print l
   | N(fg,r,fd) -> postordre g_print fg; g_print " "; postordre g_print fd; g_print " "; g_print r;

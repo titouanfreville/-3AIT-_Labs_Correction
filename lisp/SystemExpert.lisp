@@ -24,7 +24,7 @@
         (prin1 (car possibles))
         (return 'succes)
       )
-    ) 
+    )
     (setq possibles (cdr possibles))
     (go boucle)
   )
@@ -149,7 +149,7 @@
         (conclusion regle ())
         )
       (listreg regle)
-    ) 
+    )
   )
 )
 ; fonction premissechain
@@ -171,7 +171,7 @@
 ; fonction printjoli
 (defun printjoli (L)
   (mapcar (lambda (X) (print X)) L)
-) 
+)
 ; fonction utilisee?
 (defun utilisee? (regle)
   member2(cond
