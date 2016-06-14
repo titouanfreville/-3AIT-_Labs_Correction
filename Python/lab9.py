@@ -27,11 +27,18 @@ def last (l):
 # @RETURN list without last element
 def butlast (l):
   return l[:-1]
+# VERSION PROF
+car_lambda=lambda liste:liste[0]
+cdr_lambda=lambda liste:liste[1:]
+last_lambda=lambda liste:liste[-1]
+butlast_lambda=lambda liste:liste[:-1]
 
 liste=[0,1,2,3,4,5]
 print liste
 print car (liste)
 print cdr (liste)
+print car_lambda (liste)
+print cdr_lambda (liste)
 print last (liste)
 print butlast (liste)
 
@@ -39,17 +46,22 @@ print butlast (liste)
 # @PARAM list
 # @RETURN last element from the list (going through all the list)
 def last_element_from_start (liste):
-  l=list(liste)
-  while len(l)>1:
-    l=cdr(l)
-  return car(l)
+  if liste==[]:
+    return None
+  elif cdr(liste)==[]:
+    return car(liste)
+  else:
+    return last_element_from_start(cdr(liste))
 
 # I hate simple exercices ... xD
 def last_element_from_end (liste):
   return last(liste)
 
-print last_element_from_start (liste)
-print last_element_from_end (liste)
+# Official :) (mais j'aime mieux avec return :p)
+last_element_from_end_lambda = lambda liste: last(liste)
+
+print last_element_from_start(liste)
+print last_element_from_end_lambda (liste)
 # @carre
 # @PARAM n
 # @RETURN n*n
@@ -62,28 +74,34 @@ def carre (n):
 def cube(n):
   return n*carre(n)
 
-print carre(2)
-print cube(2)
+# Official
+carre_lambda = lambda x: x*x
+cube_lambda = lambda x: carre(x)*x
+
+print carre_lambda(2)
+print cube_lambda(2)
 
 # @somme
 # @PARAM n1 n2
 # @RETURN n1+n2
 def somme (n1,n2):
   return n1+n2
-
-print somme(1,2)
+# Official
+somme_lambda=lambda (n1,n2): n1+n2
+print somme_lambda(1,2)
 
 # The 2 following function already exist ;) But let's play with here 
 # @membre
 # @PARAM list,element
 # @RETURN true if e in list, false else
 def membre(liste,e):
-  l=list(liste)
-  if len(l) > 0 : 
-    return (car(l) == e or membre(cdr(l),e))
-  else:
+  if liste==[]:
     return False
+  else:
+    return (car(l) == e or membre(cdr(l),e))
 
+# official
+membre_lambda=lambda a,liste: a in liste
 # @ERROR : ElementUnkow
 # Error to be return when element searched is not in list
 class ElementUnkow(Exception):
@@ -96,14 +114,12 @@ class ElementUnkow(Exception):
 # @RETURN index of element if element exist
 # @RAISE ElementUnknow if element was not in list
 def position(liste,e):
-  l=list(liste)
-  if len(l) > 0 :
-    if (car(l)==e):
-      return 0
-    else:
-      return 1 + position(cdr(l),e)
-  else:
+  if list==[]:
     raise ElementUnkow('Element '+str(e)+' was not in list.')
+  elif (car(l)==e):
+      return 0
+  else:
+    return 1 + position(cdr(l),e)
 
 # Test
 print membre(liste,2)
@@ -117,14 +133,12 @@ print position(liste,2)
 # @PARAM list, element
 # @RETURN number of instance of element
 def identique_ins(liste,e):
-  l=list(liste)
-  if len(l) > 0 :
-    if (car(l)==e):
-      return 1+identique_ins(cdr(l),e)
-    else:
-      return identique_ins(cdr(l),e)
-  else:
+  if liste==[]:
     return 0
+  elif car(l)==e :
+    return 1+identique_ins(cdr(l),e)
+  else:
+    return identique_ins(cdr(l),e)
 # Identique : 
 # V2: Number of elements who appear multiple times in list
 # @remove_e_list
@@ -140,14 +154,12 @@ def remove_all_e_list(liste,e):
 # @PARAM list
 # @RETURN number of element with multiple occurence in list
 def identique_els(liste):
-  l=list(liste)
-  if len(l) > 0 :
-    if (membre(cdr(l),car(l))):
-      return 1+identique_els(remove_all_e_list(l,car(l)))
-    else:
-      return identique_els(cdr(l))
-  else:
+  if liste==[]:
     return 0
+  elif (membre(cdr(l),car(l))):
+    return 1+identique_els(remove_all_e_list(l,car(l)))
+  else:
+    return identique_els(cdr(l))
 
 # test
 l2=[1,2,1,2,3,1,2,3,4,1,2,3,4,5]
